@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica: Dataset de Dengue</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --background-color: #f8f9fa;
+            --text-color: #333333;
+            --accent-color: #007bff;
+            --table-border: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        table, th, td {
+            border: 1px solid var(--table-border);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .code-snippet {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            color: #d63384;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Documentación Técnica</h1>
+    <p>Análisis de Datos Relacionados con la Enfermedad del Dengue</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Descripción de los Datos</h2>
+        <p>
+            El conjunto de datos analizado contiene registros médicos e indicadores hematológicos de pacientes, orientados 
+            al estudio y predicción de la infección por dengue. El objetivo principal es proporcionar un consolidado con variables 
+            clínicas (como niveles de hemoglobina, conteo de glóbulos blancos, etc.) que permitan desarrollar modelos de 
+            análisis o aprendizaje automático para clasificar a los pacientes según la presencia o ausencia de la enfermedad (<span class="code-snippet">dengue_label</span>).
+        </p>
+        <p>
+            El dataset incluye información no solo de adultos (hombres y mujeres) sino también de menores de edad ("Child"),
+            lo que permite un análisis transversal de cómo la enfermedad interactúa con los perfiles sanguíneos en diferentes grupos poblacionales.
+        </p>
+    </section>
+
+    <section>
+        <h2>Fuentes</h2>
+        <p>
+            Los datos provienen del archivo <strong><code>Dengue_diseases_dataset_modified (1).csv</code></strong> disponible en la carpeta <code>data</code> de este repositorio. 
+            Este conjunto de datos puede derivar de bases de datos clínicas estandarizadas destinadas a la investigación en salud pública para el estudio de hematología en casos de enfermedades infecciosas transmitidas por mosquitos.
+        </p>
+    </section>
+
+    <section>
+        <h2>Diccionario de Variables</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Tipo de Dato</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>age</code></td>
+                    <td>Numérico</td>
+                    <td>La edad del paciente en años.</td>
+                </tr>
+                <tr>
+                    <td><code>gender</code></td>
+                    <td>Categórico</td>
+                    <td>El género o grupo del paciente. Valores comunes: <em>Male</em>, <em>Female</em>, <em>Child</em>.</td>
+                </tr>
+                <tr>
+                    <td><code>hemoglobin_g_dl</code></td>
+                    <td>Numérico</td>
+                    <td>Niveles de hemoglobina en la sangre del paciente, medidos en gramos por decilitro (g/dL).</td>
+                </tr>
+                <tr>
+                    <td><code>wbc_count</code></td>
+                    <td>Numérico</td>
+                    <td>Conteo de glóbulos blancos (White Blood Cell count). Esencial para medir la respuesta del sistema inmunológico.</td>
+                </tr>
+                <tr>
+                    <td><code>differential_count</code></td>
+                    <td>Numérico (Binario)</td>
+                    <td>Indicador o proporción del conteo diferencial de glóbulos blancos, típicamente toma valores de 0 o 1.</td>
+                </tr>
+                <tr>
+                    <td><code>rbc_count</code></td>
+                    <td>Numérico (Binario)</td>
+                    <td>Frecuentemente utilizado en este dataset como un indicador relacionado al conteo de Glóbulos Rojos (Red Blood Cell). Toma valores de 0 o 1.</td>
+                </tr>
+                <tr>
+                    <td><code>platelet_count</code></td>
+                    <td>Numérico</td>
+                    <td>Conteo de plaquetas. Un conteo bajo (trombocitopenia) es un signo clave y crítico en la enfermedad del dengue.</td>
+                </tr>
+                <tr>
+                    <td><code>platelet_distribution_width</code></td>
+                    <td>Numérico</td>
+                    <td>Ancho de distribución de las plaquetas. Representa la variación en el tamaño de las plaquetas.</td>
+                </tr>
+                <tr>
+                    <td><code>dengue_label</code></td>
+                    <td>Numérico (Binario)</td>
+                    <td>Variable objetivo (Target). Un valor de <strong>1</strong> indica que el paciente es positivo para dengue, mientras que <strong>0</strong> indica negativo.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Repositorio Analisis_dengue. Documentación técnica generada activamente para el proyecto.</p>
+</footer>
+
+</body>
+</html>
